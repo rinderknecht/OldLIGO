@@ -1,0 +1,1 @@
+const from_ascii: bytes = bytes`foo`; // Not a call

@@ -1,0 +1,21 @@
+// see issue #1692
+
+namespace Foo {
+  const x = (() => {
+    let _ = 1;
+    let y = _;
+    return y + _;
+  })()
+};
+
+namespace Bar {
+  const [_, ignored] = [1, 2]
+  export const x = _
+};
+
+type _ = int
+type y = _
+
+namespace _ { const _ = 4 }
+
+const _ = Bar.x

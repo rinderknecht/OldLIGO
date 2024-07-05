@@ -1,0 +1,67 @@
+type ret = [list<operation>, int]
+
+interface FA0 /*extends FABase*/ {
+  // @entry
+  transfer : (_u : unit, s : int) => ret
+};
+
+interface FA0Ext extends FA0 {
+  // @entry
+  other1 : (_u : unit, s : int) => ret;
+};
+
+interface FA1 /*extends FABase*/ {
+  // @entry
+  other2 : (_u : unit, s : int) => ret;
+};
+
+class Impl implements FA0Ext, FA1 {
+  @entry transfer = (_u : unit, s : int) : ret => [[], s];
+  @entry other1 = (_u : unit, s : int) : ret => [[], s];
+  @entry other2 = (_u : unit, s : int) : ret => [[], s];
+};
+
+interface FAAll extends FA0Ext, FA1 {
+  // @entry
+  other3 : (_u : unit, s : int) => ret;
+  // @view
+  v1 : (_u : unit, s : int) => int;
+  // @entry
+  juju? : (i : int, s : int) => ret;
+};
+
+class ImplAll implements FAAll {
+  @entry transfer = (_u : unit, s : int) : ret => [[], s];
+  @entry other1 = (_u : unit, s : int) : ret => [[], s];
+  @entry other2 = (_u : unit, s : int) : ret => [[], s];
+  @entry other3 = (_u : unit, s : int) : ret => [[], s];
+  @view v1 = (_u : unit, s : int) : int => s;
+  /* this is wrong because juju has a different type */
+  @entry juju = (_i : string, s : int) : ret => [[], s];
+
+  /* foo, other4 and v2 are not in FAAll, but still added, because filtering
+     is not enabled */
+  foo = (s : int) : int => s;
+  @entry other4 = (_u : unit, s : int) : ret => [[], s];
+  @view v2 = (_u : unit, s : int) : int => s;
+};
+
+class ImplAllNoJuju implements FAAll {
+  @entry transfer = (_u : unit, s : int) : ret => [[], s];
+  @entry other1 = (_u : unit, s : int) : ret => [[], s];
+  @entry other2 = (_u : unit, s : int) : ret => [[], s];
+  @entry other3 = (_u : unit, s : int) : ret => [[], s];
+  @view  v1 = (_u : unit, s : int) : int => s;
+
+  /* foo, other4 and v2 are not in FAAll, but still added, because filtering
+     is not enabled */
+  foo = (s : int) : int => s;
+  @entry other4 = (_u : unit, s : int) : ret => [[], s];
+  @view v2 = (_u : unit, s : int) : int => s;
+};
+
+const test = (() => {
+  let orig = Test.originate(contract_of(ImplAll), ImplAll.foo(42), 0 as tez);
+  let p : parameter_of<ImplAll> = Other4();
+  Test.transfer_exn(orig.addr, p, 1 as mutez);
+})()

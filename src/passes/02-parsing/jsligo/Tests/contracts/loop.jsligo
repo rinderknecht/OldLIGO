@@ -1,0 +1,66 @@
+/* Test loops in JsLIGO */
+
+let aux_simple = (i : int) : int => {
+  if (i < 100) { return aux_simple (i + 1); } else { return i; };
+};
+
+let counter_simple = (n : int) : int => aux_simple (n);
+
+type sum_aggregator = {
+  counter : int;
+  sum     : int;
+};
+
+let counter = (n : int) : int => {
+  let initial : sum_aggregator = {counter: 0, sum: 0};
+  let aggregate = (prev : sum_aggregator):int => {
+    if (prev.counter <= n) {
+      return aggregate ({counter : prev.counter + 1,
+                    sum : prev.counter + prev.sum});
+    } else {
+      return prev.sum;
+    };
+  };
+  return aggregate (initial);
+};
+
+let aux_nest = (prev : sum_aggregator) : sum_aggregator => {
+  if (prev.counter < 100) {
+    let sum : int =
+      prev.sum + aux_simple (prev.counter);
+    return aux_nest ({counter: prev.counter + 1,
+                  sum: sum});
+  } else {
+    return ({counter: prev.counter, sum: prev.sum});
+  };
+};
+
+let counter_nest = (_n : int) : int => {
+  let initial : sum_aggregator = {counter: 0, sum: 0};
+  let out : sum_aggregator = aux_nest (initial);
+  return out.sum;
+};
+
+const testmap : map <int, int> =
+  Map.literal ([
+    [0, 1],
+    [1, 2],
+    [2, 4]]);
+
+const entries = (x : map<int, int>) : list<[int,int]> => {
+    let lst : list<[int, int]> = [];
+    for (const kv of x) {
+      lst = [kv, ...lst];
+    };
+    return lst
+};
+
+const unzipped_entries = (x : map<int, int>) : [list<int>, list<int>] => {
+    let keys : list<int> = [];
+    let values : list<int> = [];
+    for (const [k, v] of x) {
+      keys = [k, ...keys];
+      values = [v, ...values];
+    };
+    return [keys, values];
+};

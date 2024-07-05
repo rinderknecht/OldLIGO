@@ -1,0 +1,16 @@
+namespace C {
+  export type storage =
+    {
+     storage : int;
+     dynamic_entrypoints
+    }
+
+  export class C {
+    @dyn_entry
+    one = (_u: unit, _i: int): [list<operation>, int] => [[], 1];
+
+    @entry
+    set_one = (one_v2 : entrypoint<unit, int>, s : storage)
+    : [list<operation>, storage] => { return; }
+  }
+}

@@ -1,0 +1,23 @@
+;; Build of the preprocessor of JsLIGO as a library
+
+(library
+ (name preprocessing_jsligo)
+ (public_name ligo.preprocessing.jsligo)
+ (instrumentation
+  (backend bisect_ppx))
+ (libraries
+  ;; Vendors
+  Preprocessor)
+ (modules Config))
+
+;; Build of a standalone preprocessor for JsLIGO
+
+(executable
+ (name PreprocMain)
+ (libraries
+  simple-utils-unix
+  simple-utils-unix.http_uri
+  ;; LIGO
+  preprocessing_jsligo
+  preprocessing_shared)
+ (modules PreprocMain))

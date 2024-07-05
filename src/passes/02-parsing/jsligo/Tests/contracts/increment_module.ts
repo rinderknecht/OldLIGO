@@ -1,0 +1,23 @@
+type storage = int;
+
+type parameter = ["Increment", int] | ["Decrement", int] | ["Reset"];
+
+type ret = [list<operation>, storage];
+
+const add = (store: storage, delta: int): storage => store + delta;
+
+const sub = (store: storage, delta: int): storage => store - delta;
+
+class C {
+  @entry
+  main = (action: parameter, store: storage): ret => {
+    return [
+      [],
+      match(action, {
+        Increment: (n) => add(store, n),
+        Decrement: (n) => sub(store, n),
+        Reset: () => 0,
+      })
+    ]
+  }
+};

@@ -1,0 +1,82 @@
+type storage = int
+
+type parameter =
+  ["Increment", int]
+| ["Decrement", int]
+| ["Reset"]
+
+const add = (store: storage, delta: int): storage => store + delta
+const sub = (store: storage, delta: int): storage => store - delta;
+
+function main (action: parameter, store: storage) : [list<operation>, storage] {
+  if (true) {
+    return [
+      [],    // No operations
+      match (action, {
+        Increment: (n) => add (store, n),
+        Decrement: (n) => sub (store, n),
+        Reset: () => 0 })
+      ]
+  }
+  return failwith("Not Allowed")
+}
+
+function main2 (action: parameter, store: storage) : [list<operation>, storage] {
+  if (true) {
+    return [
+      [],    // No operations
+      match (action, {
+        Increment: (n) => add (store, n),
+        Decrement: (n) => sub (store, n),
+        Reset: () => 0 })
+    ]
+  } // comment should also work
+  return failwith("Not Allowed")
+}
+
+function main3 (action: parameter, store: storage) : [list<operation>, storage] {
+  if (true) {
+    return [
+      [],    // No operations
+      match (action, {
+        Increment: (n) => add (store, n),
+        Decrement: (n) => sub (store, n),
+        Reset: () => 0 })
+    ]
+  } // Comment then else should be fine too
+  else {
+    return failwith("Not allowed")
+  }
+}
+
+function main4 (action: parameter, store: storage) : [list<operation>, storage] {
+  if (true) {
+    return [
+      [],    // No operations
+      match (action, {
+        Increment: (n) => add (store, n),
+        Decrement: (n) => sub (store, n),
+        Reset: () => 0 })
+    ]
+  } /* Block comments as well */
+  // and even multiple comments
+  return failwith("Not Allowed");
+}
+
+export function example (x : int) : int {
+  if (x == 42) { return x; } // foo
+  else {
+    return x
+  }
+}
+
+export function max2 (x: int, y: int) {
+  if (x > y) return x; else return y
+}
+
+export function max3 (x: int, y: int, z: int) {
+  if (x > y)
+    if (x > z) return x; else return z;
+  else
+    if (y > z) return y; else return z
+}

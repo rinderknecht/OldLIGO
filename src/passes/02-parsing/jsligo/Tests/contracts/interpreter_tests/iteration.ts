@@ -1,0 +1,19 @@
+const f_set = (xs : set<int>) : int => {
+  let r = 0;
+  for (const x of xs) {
+    r = x;
+  }
+  return r;
+};
+
+const test_set = f_set(Set.add(3, Set.add(2, Set.add(2, Set.add(1, Set.empty as set<int>)))));
+
+const f_list = (xs : list<int>) : int => {
+  let r = 0;
+  for (const x of xs) {
+    r = x;
+  }
+  return r;
+};
+
+const test_list = f_list([1,2,3]);

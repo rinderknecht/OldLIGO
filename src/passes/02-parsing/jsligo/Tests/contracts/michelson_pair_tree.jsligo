@@ -1,0 +1,15 @@
+/// <reference path="./ligo.d.ts" />
+
+type inner_storage = michelson_pair<[int, "one", nat, "two"]>;
+
+type storage = michelson_pair<[int, "three", inner_storage, "four"]>;
+
+type return_ = [list<operation>, storage];
+
+class C {
+  @entry
+  main = (_action: unit, _store: storage): return_ => {
+    let foo = [3, [1, 2 as nat]];
+    return [[], foo as storage]
+  }
+};

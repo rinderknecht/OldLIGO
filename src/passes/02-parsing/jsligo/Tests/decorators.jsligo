@@ -1,0 +1,10 @@
+interface I {
+  // @entry
+  foo : () => unit;
+
+  // @dyn_entry
+  bar : () => unit;
+
+  // @view
+  baz : () => unit;
+}

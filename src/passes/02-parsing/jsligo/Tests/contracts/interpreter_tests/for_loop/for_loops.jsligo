@@ -1,0 +1,55 @@
+const testLoop = (() => {
+
+  let a = 0;
+  for ( ; a < 10 ; ) {
+    a++;
+  };
+  Assert.assert(a == 10)
+
+  let b = 0;
+  for ( ;b < 10; b++) {
+    b+=2
+  };
+  Assert.assert(b == 12);
+
+  for (let c = 0 ; c < 10 ; ) {
+    c++
+  };
+
+  let d = -1;
+  for (d = 15 ; d < 10 ; ) {
+    d++
+  };
+  Assert.assert(d == 15);
+
+  for (let e = 0 ;e < 10; e++) {
+    e++
+  };
+
+  let f = -1;
+  for (f = 0 ;f < 10; f++) {
+    f++
+  };
+  Assert.assert(f == 10);
+
+  let g = 11;
+  for ( ; g < 10 ; ) ;
+  Assert.assert(g == 11);
+
+  let h = 0;
+  for ( ;h < 10; h++) ;
+  Assert.assert(h == 10);
+
+  for (let i = 11 ; i < 10 ; ) ;
+
+  let j = 0;
+  for (j = 11 ; j < 10 ; ) ;
+  Assert.assert(j == 11);
+
+  for (let k = 0 ;k < 10; k++) ;
+
+  let l = -1;
+  for (l = 0 ;l < 10; l++) ;
+  Assert.assert(l == 10);
+
+})();

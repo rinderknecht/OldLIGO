@@ -1,0 +1,20 @@
+type foo = big_map<int, int>
+
+const set2 = (n : int, m : foo) : foo => Big_map.update (23, Some (n), m)
+
+const set_ = (x : [int, foo]) : foo => set2 (x[0], x[1])
+
+const add = ([n,m] : [int, foo]) : foo => Big_map.add (23, n, m)
+
+const rm = (m : foo) : foo => Big_map.remove (42, m)
+
+const get = (m : foo) : option <int> => Big_map.find_opt (42, m)
+
+const empty_map : foo = Big_map.empty
+
+const map1 : foo = Big_map.literal([[23,0], [42,0]]);
+
+function mutimaps (m: foo, n: foo) : foo {
+  const bar : foo = Big_map.update (42, Some (0), m)
+  return Big_map.update (42, get (bar), n)
+}

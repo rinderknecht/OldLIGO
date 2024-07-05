@@ -1,0 +1,9 @@
+class C {
+  @entry
+  main = (_p: unit, _s: int): [list<operation>, int] => {
+    for (let c = 0; c < 10;) {
+      c++
+    };
+    return [[], c]
+  };
+};

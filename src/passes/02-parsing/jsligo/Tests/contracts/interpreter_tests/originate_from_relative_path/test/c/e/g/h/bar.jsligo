@@ -1,0 +1,6 @@
+const f = "../../../../../src/contract/unit.mligo";
+
+export const originate = () => {
+  const x : origination_result<unit, unit> = Test.originate_from_file(f, unit, 0 as mutez);
+  return x.addr
+};

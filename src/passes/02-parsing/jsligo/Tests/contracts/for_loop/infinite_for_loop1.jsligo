@@ -1,0 +1,10 @@
+class C {
+  @entry
+  main = (_y: unit, _x: int): [list<operation>, int] => {
+    let x = 1;
+    for ( ;;) {
+      let _ = unit
+    };
+    return [[], x]
+  };
+};

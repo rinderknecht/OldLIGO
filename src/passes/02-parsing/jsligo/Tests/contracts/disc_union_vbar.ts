@@ -1,0 +1,28 @@
+type planetType =
+  { kind: "Tellurian" } | { kind: "Gaseous" } | { kind: "Other" };
+
+type planet = {
+  name: string;
+  planetType;
+  lord: option<address>
+};
+
+class C {
+  @entry
+  main = (p: planet, _: int): [list<operation>, int] => {
+    let state = 0;
+    let planetType = p.planetType;
+    switch (planetType.kind) {
+      case "Tellurian":
+        state += 1;
+        break;
+      case "Gaseous":
+        state -= 2;
+        break;
+      case "Other":
+        state = 0;
+        break;
+    };
+    return [[], state]
+  }
+};

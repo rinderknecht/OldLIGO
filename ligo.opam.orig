@@ -1,0 +1,39 @@
+name         : "ligo"
+opam-version : "2.0"
+maintainer   : "Galfour <contact@ligolang.org>"
+authors      : [ "Gabriel Alfour" "Christian Rinderknecht"]
+homepage     : "https://gitlab.com/ligolang/tezos"
+bug-reports  : "https://gitlab.com/ligolang/tezos/issues"
+synopsis     : "A high-level language which compiles to Michelson"
+dev-repo     : "git+https://gitlab.com/ligolang/tezos.git"
+license      : "MIT"
+
+# If you change the dependencies, run `opam lock` in the root
+depends: [
+  # Jane Street Core
+  "core" {>= "v0.15.0" & < "v0.16.0"}
+  "core_unix" {>= "v0.15.0" & < "v0.16.0"}
+  "core_kernel" { >= "v0.15.0" & < "v0.16.0"}
+  # Tooling
+  "ocamlfind" { build }
+  "dune" { build & >= "3.6.1" }
+  # Pipeline
+  "menhir"
+  # I/O
+  "terminal_size"
+  "pprint"
+  "yojson"
+  # PPXs
+  "ppx_deriving"
+  "ppx_deriving_yojson"
+  "ppx_yojson_conv"
+  "ppx_import"
+  # dependencies of vendored dependencies
+  "hex"
+  "zarith" { >= "1.12" & < "1.13" }
+]
+build: [
+  [ "dune" "build" "-p" name "-j" jobs ]
+]
+pin-depends: [
+]

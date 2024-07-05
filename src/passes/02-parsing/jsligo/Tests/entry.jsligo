@@ -1,0 +1,4 @@
+interface I {
+  //@view
+  f : () => unit
+}

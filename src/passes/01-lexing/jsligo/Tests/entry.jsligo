@@ -1,0 +1,4 @@
+interface I {
+  //@entry
+  f : () => unit
+}

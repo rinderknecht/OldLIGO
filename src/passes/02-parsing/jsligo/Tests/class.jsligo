@@ -1,0 +1,5 @@
+@inline
+class C {
+  x : int = 1;
+  f () { return; }
+}

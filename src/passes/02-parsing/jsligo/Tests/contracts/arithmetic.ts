@@ -1,0 +1,21 @@
+/* Test JSLigo arithmetic operators */
+
+function mod_op   (n : int) { return n % 42  }
+function plus_op  (n : int) { return n + 42  }
+function minus_op (n : int) { return n - 42  }
+function times_op (n : int) { return n * 42  }
+function div_op   (n : int) { return n / 2   }
+function int_op   (n : nat) { return int (n) }
+function neg_op   (n : int) { return -n      }
+function foo      (n : int) { return n + 10  }
+function neg_op_2 (b : int) { return -foo(b) }
+function ediv_op  (n : int) : option<[int, nat]> { return ediv(n,2) }
+
+function aux (unit : unit) : unit {
+  let _x : int = 42 * abs(42)
+  let _y : int = abs(23) * 23
+  let _z : int = 144 * 144
+  let _w : nat = abs(7) * abs(7)
+}
+
+let mul_woo = aux (unit)

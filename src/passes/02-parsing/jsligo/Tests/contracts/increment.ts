@@ -1,0 +1,28 @@
+type storage = int;
+
+type parameter = ["Increment", int] | ["Decrement", int] | ["Reset"];
+
+type ret = [list<operation>, storage];
+
+// Two entrypoints
+
+const add = (store: storage, delta: int): storage => store + delta;
+
+const sub = (store: storage, delta: int): storage => store - delta;
+
+/* Main access point that dispatches to the entrypoints according to
+   the smart contract parameter. */
+
+class C {
+  @entry
+  main = (action: parameter, store: storage): ret => {
+    return [
+      [], // No operations
+      match(action, {
+        Increment: (n) => add(store, n),
+        Decrement: (n) => sub(store, n),
+        Reset: () => 0,
+      })
+    ]
+  }
+};

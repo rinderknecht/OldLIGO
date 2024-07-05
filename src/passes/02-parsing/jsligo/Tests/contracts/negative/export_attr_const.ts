@@ -1,0 +1,3 @@
+// @no_mutation
+export
+const toto: D.titi = E.toto;

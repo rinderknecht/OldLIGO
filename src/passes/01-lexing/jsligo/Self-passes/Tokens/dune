@@ -1,0 +1,48 @@
+;; Build of the self passes on the tokens of JsLIGO
+
+(library
+ (name lx_js_self_tokens)
+ (public_name ligo.lexing.jsligo.self.tokens)
+ (instrumentation
+  (backend bisect_ppx))
+ (libraries
+  ;; Vendors
+  simple-utils
+  LexerLib
+  core_kernel.nonempty_list
+  ;; LIGO
+  preprocessing_jsligo
+  lexing_shared
+  menhir_js_tokens)
+ (modules Token PARAMS Comments ES6FUN SEMI_ELSE Self Decorators))
+
+;; --------------------------------------------------------------------
+;; Build the type ['a terminal] to complete the inspection API of
+;; Menhir
+
+(rule
+ (targets MenhirToken.ml MenhirToken.mli)
+ (deps
+  (:ParToken ../../../../02-parsing/jsligo/ParToken.mly))
+ (action
+  (run
+   menhir
+   %{ParToken}
+   --only-tokens
+   --inspection
+   --table
+   --base
+   MenhirToken)))
+
+(library
+ (name menhir_js_tokens)
+ (public_name ligo.lexing.menhir_jsligo_tokens)
+ (modules MenhirToken)
+ (libraries
+  ;; LIGO
+  lexing_shared
+  ;; Third party
+  menhirLib
+  hex)
+ (flags
+  (:standard -open Lexing_shared -open Wrap)))

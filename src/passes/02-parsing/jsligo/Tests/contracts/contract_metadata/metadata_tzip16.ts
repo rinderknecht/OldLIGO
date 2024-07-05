@@ -1,0 +1,66 @@
+type param = int;
+
+// ---------------------------------------------------------------------------
+// no metadata here
+
+namespace Entry_no_metadata {
+  type storage_1 = { data: int };
+
+  type ret_1 = [list<operation>, storage_1];
+
+  export class Entry_no_metadata {
+    @entry
+    main = (_p: param, s: storage_1): ret_1 => [[], s]
+  }
+};
+
+// ---------------------------------------------------------------------------
+// metadata with incorrect format
+
+namespace Entry_invalid_metadata_1 {
+  type storage_2 = {
+    data: int;
+    metadata: nat
+  };
+
+  type ret_2 = [list<operation>, storage_2];
+
+  export class Entry_invalid_metadata_1 {
+    @entry
+    main = (_p: param, s: storage_2): ret_2 => [[], s]
+  }
+};
+
+// ---------------------------------------------------------------------------
+// metadata with incorrect format (big_map with reversed params)
+
+namespace Entry_invalid_metadata_2 {
+  type storage_3 = {
+    data: int;
+    metadata: big_map<bytes, string>
+  };
+
+  type ret_3 = [list<operation>, storage_3];
+
+  export class Entry_invalid_metadata_2 {
+    @entry
+    main = (_p: param, s: storage_3): ret_3 => [[], s]
+  }
+};
+
+// ---------------------------------------------------------------------------
+// metadata with correct format
+
+namespace Entry_valid_metadata {
+  type storage_4 = {
+    data: int;
+    metadata: big_map<string, bytes>
+  };
+
+  type ret_4 = [list<operation>, storage_4];
+
+  export class Entry_valid_metadata {
+    @entry
+    main = (_p: param, s: storage_4): ret_4 => [[], s]
+  }
+};

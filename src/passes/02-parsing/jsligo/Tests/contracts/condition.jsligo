@@ -1,0 +1,20 @@
+/* Test conditional in JsLIGO */
+
+function simple (i : int) : int {
+  if (i == 2) return 42; else return 0
+}
+
+function annot (i : int) : int {
+  if (((i == 2) as bool)) return (42 as int); else return (0 as int)
+}
+
+function shadow (i: int): int {
+  let result = 0
+  if (i == 2) {
+    let result = 42
+    return result
+  } else {
+    let result = 0
+    return result
+  }
+}

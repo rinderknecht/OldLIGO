@@ -1,0 +1,21 @@
+export namespace IncDec {
+  export type storage = int;
+  export type ret = [list<operation>, storage];
+
+  export class IncDec {
+    @entry
+    increment (_: unit, store : storage) : ret {
+      let s = store
+      return [[], ++s];
+    };
+
+    @entry
+    decrement (_: unit, store : storage) : ret {
+      let s = store
+      return [[], --s];
+    };
+
+    @entry
+    reset = (_p : unit, _s : storage) : ret => [[], 0];
+  };
+};

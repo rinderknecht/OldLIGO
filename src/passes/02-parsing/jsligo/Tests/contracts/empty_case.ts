@@ -1,0 +1,9 @@
+type fooBarBaz =
+  ["Bar", int]
+| ["Baz"];
+
+const check = (f : fooBarBaz) : int =>
+  match(f, {
+    Bar: (i) => i,
+    Baz: () => -1
+  });

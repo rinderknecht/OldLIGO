@@ -1,0 +1,18 @@
+(library
+ (name cst_cameligo)
+ (public_name ligo.cst.cameligo)
+ (instrumentation
+  (backend bisect_ppx))
+ (libraries
+  ;; Input
+  lexing_cameligo
+  cst_shared
+  ;; Vendors
+  LexerLib
+  simple-utils
+  ;; Third party
+  hex
+  zarith)
+ (modules CST Print Fold)
+ (preprocess
+  (pps ppx_yojson_conv)))

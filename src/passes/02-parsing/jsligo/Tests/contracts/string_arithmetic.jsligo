@@ -1,0 +1,5 @@
+/* Test that the string concatenation syntax in JsLIGO works */
+
+let length_op = (s: string) : nat => String.length (s);
+let concat_op = (s: string) : string => s + "toto";
+let sub_op = (s: string) : string => String.sub (1, 2, s);

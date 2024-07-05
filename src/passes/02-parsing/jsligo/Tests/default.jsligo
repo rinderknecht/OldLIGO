@@ -1,0 +1,5 @@
+export namespace IncDec {
+  @entry
+  const default = (_u : unit, store : storage) : result =>
+    increment(1, store)
+};

@@ -1,0 +1,4 @@
+let check = (p: key_hash) : list <operation> => {
+  let _unused : operation = (Tezos.set_delegate (Some (p)));
+  return ([] as list <operation>);
+} ;

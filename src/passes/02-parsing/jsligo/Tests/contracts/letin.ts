@@ -1,0 +1,33 @@
+type storage = [int, int];
+
+let main = (n0 : int, n1 : storage) : [list <operation>, storage] => {
+  let x : int = 7;
+  let x2 : [int, int] = [x + n0, n1[0] + n1[1]];
+  return [[] as list <operation>, x2];
+};
+
+let f0 = (_a: string): bool => true
+let f1 = (_a: string): bool => true
+let f2 = (_a: string): bool => true
+
+let letin_nesting = (_unit: unit): string => {
+  let s = "test";
+  let p0 = f0(s);
+  assert(p0);
+  let p1 = f1(s);
+  assert(p1);
+  let p2 = f2(s);
+  assert(p2);
+  return s
+}
+
+let letin_nesting2 = (x: int): int => {
+  let y = 2;
+  let z = 3;
+  return x + y + z
+}
+
+let f = (_x: int): nat => {
+ let [_ig1, [x, _ig2]] = [(1 as nat), [(2 as nat), (3 as nat)]];
+ return x;
+}

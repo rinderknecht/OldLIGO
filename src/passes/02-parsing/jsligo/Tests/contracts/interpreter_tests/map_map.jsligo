@@ -1,0 +1,15 @@
+const map = <A,B,C>(f: (p : B) => C, m: map<A,B>) : map<A,C> => {
+    let fn = ([_, v] : [A, B]) => f(v);
+    return Map.map(fn, m)
+}
+
+const _test = () : map<string,string> => {
+    let m = Map.literal([
+        ["one", 1],
+        ["two", 2]
+    ]);
+    let fn = (_ : int) : string => "foo";
+    return map(fn, m)
+}
+
+const test = _test()

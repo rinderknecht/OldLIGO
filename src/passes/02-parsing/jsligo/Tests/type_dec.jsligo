@@ -1,0 +1,3 @@
+type t =
+  // @layout("comb")
+  {x: int};

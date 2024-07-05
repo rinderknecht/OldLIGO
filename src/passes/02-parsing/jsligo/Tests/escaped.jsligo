@@ -1,0 +1,9 @@
+interface EmployeeCsv {
+  "Emp#": string,
+  "First Name": string,
+}
+
+function demo(emp: EmployeeCsv) {
+  emp["Emp#"] = "abc";
+  emp["First Name"] = "def";
+}

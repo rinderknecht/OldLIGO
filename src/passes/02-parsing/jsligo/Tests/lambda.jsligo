@@ -1,0 +1,2 @@
+const t = match (e, {K: () => { return unit; }})
+// const f = (() => { return unit; })()

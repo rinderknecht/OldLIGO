@@ -1,0 +1,10 @@
+type ret = [list<operation>, int]
+
+interface I {
+  //@entry
+  f : (_u : unit, s : int) => ret
+};
+
+namespace N implements I {
+  @entry const f = (_u : unit, s : int) : ret => [[], s];
+}
